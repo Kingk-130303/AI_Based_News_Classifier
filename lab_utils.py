@@ -146,3 +146,16 @@ def print_metric_per_topic(df, topics, topic_lookup, title_preprocessor, model):
         accuracy = result[1] * 100
         accuracy = "%.2f " % accuracy
         print(f'{topic}: {accuracy}')
+
+def save_vocab_manually(tokenizer, vocab_dir):
+    '''Saves a vocabulary to a given directory as a text file with UTF-8 encoding'''
+    
+    os.makedirs(vocab_dir, exist_ok=True)
+    vocab_filepath = os.path.join(vocab_dir, "vocabulary.txt")
+    
+    # Extract the vocabulary
+    vocab = tokenizer.get_vocabulary()
+    
+    # Save the vocabulary with UTF-8 encoding
+    with open(vocab_filepath, "w", encoding="utf-8") as f:
+        f.write("\n".join(vocab))
